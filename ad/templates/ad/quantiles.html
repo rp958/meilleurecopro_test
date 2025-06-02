@@ -9,6 +9,7 @@
     <h1>Quantiles</h1>
     <h2>Filtrer par :</h2>
     <form method="get">
+        {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Calculer</button>
     </form>

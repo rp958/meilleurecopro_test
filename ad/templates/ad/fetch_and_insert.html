@@ -8,6 +8,7 @@
 <body>
     <h1>Fetch Data from API</h1>
     <form method="post">
+        {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Go!</button>
     </form>
