@@ -53,13 +53,18 @@ def quantiles(request):
             ads = ads.filter(zip_code=zip_code)
     ads = ads.filter(annual_condominium_fees__isnull=False)
 
-    all_annual_condo_fees = [
-        condo_fee["annual_condominium_fees"]
-        for condo_fee in ads.values("annual_condominium_fees")
-    ]
-    avg = round(sum(all_annual_condo_fees) / len(all_annual_condo_fees), 2)
-    ten_quant = numpy.quantile(all_annual_condo_fees, 0.1)
-    ninety_quant = numpy.quantile(all_annual_condo_fees, 0.9)
+    if ads.count():
+        all_annual_condo_fees = [
+            condo_fee["annual_condominium_fees"]
+            for condo_fee in ads.values("annual_condominium_fees")
+        ]
+        avg = round(sum(all_annual_condo_fees) / len(all_annual_condo_fees), 2)
+        ten_quant = numpy.quantile(all_annual_condo_fees, 0.1)
+        ninety_quant = numpy.quantile(all_annual_condo_fees, 0.9)
+    else:
+        avg = 0
+        ten_quant = 0
+        ninety_quant = 0
     return render(
         request,
         "quantiles.html",
