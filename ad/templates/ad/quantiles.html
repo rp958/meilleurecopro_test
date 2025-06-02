@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantiles</title>
+</head>
+<body>
+    <h1>Quantiles</h1>
+    <h2>Filtrer par :</h2>
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Calculer</button>
+    </form>
+
+    <h2>Resultats</h2>
+    <p>Nombre d'annonces sélectionnées: {{ ads.count }}</p>
+    <p>Charges moyennes : {{ avg }}</p>
+    <p>Quantile 10% : {{ ten_quant }}</p>
+    <p>Quantile 90% : {{ ninety_quant }}</p>
+</body>
+</html>
